@@ -40,7 +40,7 @@ foreach ($searchCollector->getData() as $data) {
     fputcsv($csv, array_map(
         // Сохраним в csv только необходимые поля в соответствии со списком и по порядку из конфига
         function($field) use ($data) {
-            array_walk($data, function (&$v) { $v = $v === null ? 'null' : $v; }); // по ТЗ в csv надо вывести 'null' строкой
+            array_walk($data, function (&$v) { $v ??= 'null'; }); // по ТЗ в csv надо вывести 'null' строкой
             return array_key_exists($field, $data) ? $data[$field] : 'null';
         },
         array_keys($cfg->dumpFields)
