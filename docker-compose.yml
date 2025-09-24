@@ -6,4 +6,5 @@ services:
       - ./:/app
       - ./php.ini:/usr/local/etc/php/conf.d/php.ini
     working_dir: /app
+    command: "make run"
     tty: true
